@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commit History</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .navbar {
+            background-color: #5c4653;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            height: 50px;
+            justify-content: space-between;
+        }
+        .navbar .left, .navbar .right {
+            display: flex;
+            align-items: center;
+        }
+        .navbar .left span {
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        .navbar .right span {
+            margin-left: 15px;
+        }
+        .navbar .menu {
+            display: flex;
+            gap: 15px;
+        }
+        .navbar .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .navbar .menu a:hover {
+            text-decoration: underline;
+        }
+        .sidebar {
+            background-color: #2c2c2c;
+            color: white;
+            width: 250px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+        .sidebar h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+        .sidebar .section {
+            margin-top: 20px;
+        }
+        .sidebar .branch {
+            margin-top: 5px;
+            padding: 5px 10px;
+            background-color: #3c3c3c;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .topbar {
+            background-color: #343a40;
+            color: white;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 14px;
+            padding: 0 15px;
+            margin: 0 -40px;
+            margin-bottom: 45px; /* Added margin bottom */
+        }
+        .topbar a {
+            color: white;
+            text-decoration: none;
+        }
+        .topbar a:hover {
+            text-decoration: underline;
+        }
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+        }
+        .history {
+            padding: 0 40px;
+            overflow-y: auto;
+            flex: 1;
+        }
+        .commit {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            background-color: #fff;
+        }
+        .commit .info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .commit .info span {
+            font-size: 14px;
+            color: #555;
+        }
+        .commit .message {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .commit .status {
+            font-size: 14px;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="left">
+            <span>odoo.sh</span>
+            <div class="menu">
+                <a href="#">Branches</a>
+                <a href="#">Builds</a>
+                <a href="#">Status</a>
+                <a href="#">Audit logs</a>
+                <a href="#">Settings</a>
+                <a href="#">Documentation</a>
+                <a href="#">FAQ</a>
+            </div>
+        </div>
+        <div class="right">
+            <span>al-mona (OdooTec/al_mona_custom_addons)</span>
+            <span>🔔 5</span>
+            <span>heshammostafa07</span>
+        </div>
+    </div>
+    <div class="content">
+        <div class="sidebar">
+            <h2>Branches</h2>
+            <div class="section">
+                <h3>Production</h3>
+                <div class="branch">PRD</div>
+            </div>
+            <div class="section">
+                <h3>Staging</h3>
+                <div class="branch">16-240101-1500</div>
+                <div class="branch">16-247033-1735</div>
+            </div>
+            <div class="section">
+                <h3>Development</h3>
+                <div class="branch">16-240924-1152</div>
+                <div class="branch">16-310724-1006</div>
+                <div class="branch">16-060524-0409</div>
+            </div>
+        </div>
+        <div class="history">
+            <div class="topbar">
+                <a href="#">HISTORY</a>
+                <a href="#">SHELL</a>
+                <a href="#">EDITOR</a>
+                <a href="#">MONITOR</a>
+                <a href="#">LOGS</a>
+                <a href="#">BACKUPS</a>
+                <a href="#">UPGRADE</a>
+                <a href="#">SETTINGS</a>
+            </div>
+            <div style="padding-bottom: 75px;">
+                <div class="commit">
+                    <div class="info">
+                        <span>October 21, 2024</span>
+                        <span>Test: Success</span>
+                    </div>
+                    <div class="message">[UPDT]</div>
+                    <div class="status">Status: Connected</div>
+                </div>
+                <div class="commit">
+                    <div class="info">
+                        <span>September 20, 2024</span>
+                        <span>Test: Success</span>
+                    </div>
+                    <div class="message">[ADD] add discount for each sale order</div>
+                    <div class="status">Status: Dropped</div>
+                </div>
+                <div class="commit">
+                    <div class="info">
+                        <span>September 9, 2024</span>
+                        <span>Test: Warning</span>
+                    </div>
+                    <div class="message">Error when creating new settlement</div>
+                    <div class="status">Status: Dropped</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

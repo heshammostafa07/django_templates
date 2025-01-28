@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deploy Your Platform</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 48px;
+            color: #333;
+            margin-bottom: 40px;
+        }
+        .info-box {
+            background-color: #e3f2fd;
+            padding: 20px;
+            text-align: center;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            color: #1976d2;
+        }
+        .form-group {
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+        .form-group label {
+            width: 200px;
+            color: #555;
+            font-size: 18px;
+        }
+        .form-control {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            min-width: 500px;
+            font-size: 16px;
+        }
+        .select-wrapper {
+            flex: 1;
+            position: relative;
+        }
+        select.form-control {
+            width: 100%;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            background-size: 1em;
+            padding-right: 40px;
+        }
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .help-link {
+            color: #00bcd4;
+            text-decoration: none;
+            margin-left: 200px;
+        }
+        .help-link:hover {
+            text-decoration: underline;
+        }
+        .locations {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 10px;
+            margin-left: 200px;
+        }
+        .location-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .location-card.selected {
+            background-color: #f3e5f5;
+            border-color: #9c27b0;
+        }
+        .location-card img {
+            width: 120px;
+            height: 80px;
+            margin-bottom: 10px;
+        }
+        .ping {
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .region {
+            font-weight: bold;
+            color: #333;
+        }
+        .deploy-btn {
+            background-color: #00bfa5;
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            font-size: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .deploy-btn:hover {
+            background-color: #00897b;
+        }
+        .footer-text {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+        .restart-btn {
+            color: #00bcd4;
+            border: none;
+            background: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .restart-btn:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Deploy Your Platform</h1>
+    
+    <div class="info-box">
+        Each odoo.sh project is linked to a GitHub repository where your modules will be stored. Please create or 
+        select the repository for this project linked to your GitHub account.
+    </div>
+
+    <div class="form-group repo-input">
+        <label>Github Repository:</label>
+        <div class="radio-group">
+            <div class="radio-option">
+                <input type="radio" name="repo-type" id="new-repo" onchange="toggleRepoInput()">
+                <label for="new-repo">New repository</label>
+            </div>
+            <div class="radio-option">
+                <input type="radio" name="repo-type" id="existing-repo" onchange="toggleRepoInput()" checked>
+                <label for="existing-repo">Existing repository</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label></label>
+        <div class="input-container">
+            <input type="text" class="form-control new-repo-input" value="heshammostafa07/" style="display: none;">
+            <div class="select-wrapper existing-repo-input">
+                <img src="github-icon.png" alt="GitHub" class="github-icon">
+                <select class="form-control">
+                    <option value="">heshammostafa07/database_backup</option>
+                    <!-- other options -->
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .input-container {
+            flex: 1;
+            position: relative;
+        }
+        .github-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+        }
+        .existing-repo-input select {
+            padding-left: 40px;
+        }
+    </style>
+
+    <script>
+        function toggleRepoInput() {
+            const newRepo = document.getElementById('new-repo').checked;
+            document.querySelector('.new-repo-input').style.display = newRepo ? 'block' : 'none';
+            document.querySelector('.existing-repo-input').style.display = newRepo ? 'none' : 'block';
+        }
+    </script>
+
+    <div class="form-group">
+        <label></label>
+        <a href="#" class="help-link">Can't see your organization or repository ?</a>
+    </div>
+
+    <div class="form-group">
+        <label>Odoo Version:</label>
+        <div class="select-wrapper">
+            <select class="form-control">
+                <option value="18.0">18.0</option>
+                <option value="17.0">17.0</option>
+                <option value="16.0">16.0</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Subscription Code:</label>
+        <input type="text" class="form-control" placeholder="e.g. M17100512345">
+    </div>
+
+    <div class="form-group">
+        <label></label>
+        <a href="#" class="help-link">Don't have a subscription code ?</a>
+    </div>
+
+    <div class="form-group">
+        <label>Hosting location:</label>
+        <button class="restart-btn">↻ Restart ping test</button>
+    </div>
+
+    <div class="locations">
+        <div class="location-card">
+            <img src="americas-map.svg" alt="Americas">
+            <div class="ping">Ping: 179ms</div>
+            <div class="region">Americas</div>
+        </div>
+        <div class="location-card selected">
+            <img src="europe-africa-map.svg" alt="Europe/Africa">
+            <div class="ping">Ping: 90ms</div>
+            <div class="region">Europe / Africa</div>
+        </div>
+        <div class="location-card">
+            <img src="middle-east-map.svg" alt="Middle East">
+            <div class="ping">Ping: 158ms</div>
+            <div class="region">Middle East</div>
+        </div>
+        <div class="location-card">
+            <img src="south-asia-map.svg" alt="Southern Asia">
+            <div class="ping">Ping: 180ms</div>
+            <div class="region">Southern Asia</div>
+        </div>
+        <div class="location-card">
+            <img src="other-asia-map.svg" alt="Other Asia">
+            <div class="ping">Ping: 243ms</div>
+            <div class="region">Other Asia</div>
+        </div>
+        <div class="location-card">
+            <img src="oceania-map.svg" alt="Oceania">
+            <div class="ping">Ping: 334ms</div>
+            <div class="region">Oceania</div>
+        </div>
+    </div>
+
+    <button class="deploy-btn">Deploy</button>
+
+    <div class="footer-text">
+        By clicking on Deploy you accept our <a href="#">Subscription Agreement</a> and <a href="#">Privacy Policy</a>
+    </div>
+</body>
+</html>
